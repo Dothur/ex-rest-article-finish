@@ -27,7 +27,7 @@ public class ArticleService {
 
     public ArticleDto readArticle(Long id) {
         Optional<ArticleEntity> optionalArticleEntity = repository.findById(id);
-        if (optionalArticleEntity.isPresent()){
+        if (optionalArticleEntity.isPresent()) {
             return ArticleDto.fromEntity(optionalArticleEntity.get());
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 //        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
@@ -35,7 +35,7 @@ public class ArticleService {
 
     public List<ArticleDto> readArticleAll() {
         List<ArticleDto> articleDtoList = new ArrayList<>();
-        for (ArticleEntity articleEntity : this.repository.findAll()){
+        for (ArticleEntity articleEntity : this.repository.findAll()) {
             articleDtoList.add(ArticleDto.fromEntity(articleEntity));
         }
         return articleDtoList;
@@ -44,7 +44,7 @@ public class ArticleService {
 
     public ArticleDto updateArticle(Long id, ArticleDto dto) {
         Optional<ArticleEntity> optionalArticleEntity = repository.findById(id);
-        if (optionalArticleEntity.isPresent()){
+        if (optionalArticleEntity.isPresent()) {
             ArticleEntity targetEntity = optionalArticleEntity.get();
             targetEntity.setWriter(dto.getWriter());
             targetEntity.setTitle(dto.getTitle());
@@ -57,7 +57,7 @@ public class ArticleService {
     }
 
     public void deleteArticle(Long id) {
-        if (repository.existsById(id)){
+        if (repository.existsById(id)) {
             repository.deleteById(id);
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 //        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
