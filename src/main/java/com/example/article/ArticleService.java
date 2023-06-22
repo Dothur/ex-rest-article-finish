@@ -62,4 +62,13 @@ public class ArticleService {
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 //        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
     }
+
+    public List<ArticleDto> readArticlePaged() {
+        // JPA Query Method 방식 (비추)
+        List<ArticleDto> articleDtoList = new ArrayList<>();
+        for (ArticleEntity entity : this.repository.findTop20ByOrderByIdDesc()){
+            articleDtoList.add(ArticleDto.fromEntity(entity));
+        }
+        return articleDtoList;
+    }
 }

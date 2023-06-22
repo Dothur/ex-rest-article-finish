@@ -54,4 +54,10 @@ public class ArticleController {
     ) {
         service.deleteArticle(id);
     }
+
+    // GET /articles/page-test
+    @GetMapping("/page-test")
+    public List<ArticleDto> readPageTest() {
+        return service.readArticlePaged();
+    }
 }
