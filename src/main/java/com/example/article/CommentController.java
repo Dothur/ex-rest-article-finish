@@ -29,7 +29,7 @@ public class CommentController {
     @GetMapping
     public List<CommentDto> readAll(
             @PathVariable("articleId") Long articleId
-    ){
+    ) {
         return service.readCommentAll(articleId);
     }
 
@@ -40,10 +40,17 @@ public class CommentController {
             @PathVariable("articleId") Long articleId,
             @PathVariable("commentId") Long commentId,
             @RequestBody CommentDto dto
-    ){
+    ) {
         return service.updateComment(articleId, commentId, dto);
     }
 
     // TODO 게시글 댓글 삭제
     // DELETE /articles/{articleId}/comments/{commentId}
+    @DeleteMapping("/{commentId}")
+    public void delete(
+            @PathVariable("articleId") Long articleId,
+            @PathVariable("commentId") Long commentId
+    ){
+        service.deleteComment(articleId, commentId);
+    }
 }
